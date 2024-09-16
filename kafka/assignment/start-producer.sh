@@ -55,8 +55,13 @@ if ! [[ -d "$auth" ]]; then
     exit 1
 fi
 
-docker run \
-    --rm \
-    -v "$(realpath $auth)":/app/experiment-producer/auth \
-    dclandau/cec-experiment-producer \
-    --topic "$topic" --brokers "$brokers" "$@"
+NUM_INSTANCES=3 
+
+for i in $(seq 1 $NUM_INSTANCES); do
+    docker run \
+        --rm \
+        -d \
+        -v "$(realpath $auth)":/app/experiment-producer/auth \
+        dclandau/cec-experiment-producer \
+        --topic "$topic" --brokers "$brokers" "$@"
+done
