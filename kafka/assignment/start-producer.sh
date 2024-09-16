@@ -60,7 +60,7 @@ NUM_INSTANCES=3
 for i in $(seq 1 $NUM_INSTANCES); do
     docker run \
         --rm \
-        -d \
+        -d \ # does this make it concurrent?
         -v "$(realpath $auth)":/app/experiment-producer/auth \
         dclandau/cec-experiment-producer \
         --topic "$topic" --brokers "$brokers" "$@"
