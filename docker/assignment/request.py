@@ -21,5 +21,6 @@ response = requests.post(url, headers=headers, data=json.dumps(data))
 print(response.text)
 
 file_path = '/app/output/output.txt'
-with open(file_path, 'a') as file:
-    file.write(response.text)
+with open(file_path, 'a', encoding="utf-8", newline="\n") as file:
+    file.write(f"{response.text.strip()}\n")
+    file.flush()

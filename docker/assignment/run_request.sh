@@ -1,8 +1,9 @@
 #!/bin/bash
-ocker run \
+
+docker run \
   --rm \
   --name query-client \
-  --network="host" \
+  --network=my-network \
   -v ./output:/app/output \
   query-client
 
