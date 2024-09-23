@@ -55,9 +55,7 @@ if ! [[ -d "$auth" ]]; then
     exit 1
 fi
 
-NUM_INSTANCES=3 
-
-for i in $(seq 1 $NUM_INSTANCES); do
+for i in $(seq 1 3); do
     docker run \
         --rm \
         -d \ # does this make it concurrent?
